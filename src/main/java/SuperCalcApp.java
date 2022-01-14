@@ -10,12 +10,14 @@ public class SuperCalcApp extends JFrame {
         ProbabilityMenu probabilityMenu = new ProbabilityMenu(this);
         PermutationCalculator permutationCalculator = new PermutationCalculator(this);
         CombinationCalculator combinationCalculator = new CombinationCalculator(this);
+        BinomialProbabilityCalculator binomialProbabilityCalculator = new BinomialProbabilityCalculator(this);
 
         root.add(calculator.getRoot(), "calculator");
 
         root.add(probabilityMenu.getRoot(), "probability");
         root.add(permutationCalculator.getRoot(), "permutationCalculator");
         root.add(combinationCalculator.getRoot(), "combinationCalculator");
+        root.add(binomialProbabilityCalculator.getRoot(), "binomialProbabilityCalculator");
 
         SuperCalcMenu menu = new SuperCalcMenu(this);
         root.add(menu.getRoot(), "menu");

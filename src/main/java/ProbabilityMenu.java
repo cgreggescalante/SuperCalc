@@ -11,7 +11,7 @@ public class ProbabilityMenu implements View, ViewManager {
     private JButton button6;
     private JButton button7;
 
-    private SuperCalcApp parent;
+    private final SuperCalcApp parent;
 
     public ProbabilityMenu(SuperCalcApp parent) {
         this.parent = parent;
@@ -31,7 +31,7 @@ public class ProbabilityMenu implements View, ViewManager {
         } else if (event.getSource() == combinationCalculatorButton) {
             parent.setPanel("combinationCalculator");
         } else if (event.getSource() == binomialProbabilityButton) {
-            parent.setPanel("binomialProbability");
+            parent.setPanel("binomialProbabilityCalculator");
         } else if (event.getSource() == normalProbabilityButton) {
             parent.setPanel("normalProbability");
         }
