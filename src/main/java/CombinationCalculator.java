@@ -21,8 +21,8 @@ public class CombinationCalculator implements View {
         menuButton.addActionListener(this::returnToMenu);
         evaluateButton.addActionListener(this::evaluate);
 
-        nSpinner.setModel(new SpinnerNumberModel(0, 0, 1000, 1));
-        rSpinner.setModel(new SpinnerNumberModel(0, 0, 1000, 1));
+        nSpinner.setModel(new SpinnerNumberModel(0, 0, Long.MAX_VALUE, 1));
+        rSpinner.setModel(new SpinnerNumberModel(0, 0, Long.MAX_VALUE, 1));
     }
 
     private void evaluate(ActionEvent event) {
