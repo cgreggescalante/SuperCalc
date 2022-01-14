@@ -3,6 +3,8 @@ import org.apache.commons.math3.distribution.PoissonDistribution;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+import InputVerifier.DoubleInputVerifier;
+
 public class PoissonProbabilityCalculator implements View {
     private JPanel root;
     private JButton menuButton;

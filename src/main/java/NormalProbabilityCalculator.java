@@ -3,6 +3,8 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+import InputVerifier.DoubleOrEmptyInputVerifier;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class NormalProbabilityCalculator implements View {

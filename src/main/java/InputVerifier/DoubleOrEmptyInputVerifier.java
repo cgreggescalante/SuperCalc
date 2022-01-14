@@ -1,3 +1,5 @@
+package InputVerifier;
+
 import javax.swing.*;
 
 public class DoubleOrEmptyInputVerifier extends DoubleInputVerifier {
