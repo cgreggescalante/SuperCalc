@@ -32,10 +32,6 @@ public class BinomialProbabilityCalculator implements View {
         successesSpinner.setModel(new SpinnerNumberModel(0, 0, Long.MAX_VALUE, 1));
     }
 
-    private void returnToMenu(ActionEvent event) {
-        parent.setPanel("probability");
-    }
-
     private void evaluate(ActionEvent event) {
         double probability = Double.parseDouble(probabilityField.getText());
         int n = (int) (double) trialsSpinner.getValue();
@@ -58,6 +54,11 @@ public class BinomialProbabilityCalculator implements View {
         lessThanOrEqualLabel.setText("P(X <= x) = " + lessThanOrEqual);
         greaterThanLabel.setText("P(X > x) = " + greaterThan);
         greaterThanOrEqualLabel.setText("P(X >= x) = " + greaterThanOrEqual);
+    }
+
+    @Override
+    public void returnToMenu(ActionEvent event) {
+        parent.setPanel("probability");
     }
 
     @Override

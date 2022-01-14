@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+import static java.lang.System.exit;
+
 public class SuperCalcMenu implements View {
     private JPanel root;
     private JButton calculatorButton;
@@ -21,6 +23,10 @@ public class SuperCalcMenu implements View {
         } else if (event.getSource() == probabilityButton) {
             parent.setPanel("probability");
         }
+    }
+
+    public void returnToMenu(ActionEvent event) {
+        exit(0);
     }
 
     @Override

@@ -33,16 +33,17 @@ public class ProbabilityMenu implements View, ViewManager {
         } else if (event.getSource() == binomialProbabilityButton) {
             parent.setPanel("binomialProbabilityCalculator");
         } else if (event.getSource() == normalProbabilityButton) {
-            parent.setPanel("normalProbability");
+            parent.setPanel("normalProbabilityCalculator");
         }
+    }
+
+    @Override
+    public void returnToMenu(ActionEvent event) {
+        parent.setPanel("menu");
     }
 
     @Override
     public JPanel getRoot() {
         return root;
-    }
-
-    private void returnToMenu(ActionEvent event) {
-        parent.setPanel("menu");
     }
 }

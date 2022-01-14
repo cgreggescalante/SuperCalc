@@ -43,7 +43,8 @@ public class CombinationCalculator implements View {
         }
     }
 
-    private void returnToMenu(ActionEvent event) {
+    @Override
+    public void returnToMenu(ActionEvent event) {
         parent.setPanel("probability");
     }
 
