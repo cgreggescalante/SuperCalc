@@ -1,3 +1,7 @@
+package App;
+
+import Interfaces.View;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 

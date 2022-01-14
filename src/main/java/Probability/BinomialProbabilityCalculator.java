@@ -1,3 +1,8 @@
+package Probability;
+
+import App.SuperCalcApp;
+import Interfaces.View;
+import InputVerifier.DoubleInputVerifier;
 import org.apache.commons.math3.util.FastMath;
 
 import javax.swing.*;

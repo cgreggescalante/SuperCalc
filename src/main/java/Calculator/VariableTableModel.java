@@ -1,3 +1,5 @@
+package Calculator;
+
 import javax.swing.table.DefaultTableModel;
 
 public class VariableTableModel extends DefaultTableModel {

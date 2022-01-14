@@ -1,3 +1,7 @@
+package Probability;
+
+import App.SuperCalcApp;
+import Interfaces.View;
 import org.apache.commons.math3.exception.MathArithmeticException;
 import org.apache.commons.math3.exception.NotPositiveException;
 import org.apache.commons.math3.exception.NumberIsTooLargeException;

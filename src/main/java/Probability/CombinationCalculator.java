@@ -1,3 +1,8 @@
+package Probability;
+
+import App.SuperCalcApp;
+import Interfaces.View;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 

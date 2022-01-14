@@ -1,3 +1,7 @@
+package Probability;
+
+import App.SuperCalcApp;
+import Interfaces.View;
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
 import javax.swing.*;

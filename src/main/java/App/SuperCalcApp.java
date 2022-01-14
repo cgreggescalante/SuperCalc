@@ -1,3 +1,8 @@
+package App;
+
+import Calculator.Calculator;
+import Probability.*;
+
 import javax.swing.*;
 import java.awt.*;
 

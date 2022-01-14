@@ -1,3 +1,5 @@
+package Interfaces;
+
 import java.awt.event.ActionEvent;
 
 public interface ViewManager {
