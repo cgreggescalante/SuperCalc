@@ -8,7 +8,7 @@ public class ProbabilityMenu implements View, ViewManager {
     private JButton combinationCalculatorButton;
     private JButton binomialProbabilityButton;
     private JButton normalProbabilityButton;
-    private JButton button6;
+    private JButton poissonProbabilityButton;
     private JButton button7;
 
     private final SuperCalcApp parent;
@@ -22,6 +22,7 @@ public class ProbabilityMenu implements View, ViewManager {
         combinationCalculatorButton.addActionListener(this::buttonPressed);
         binomialProbabilityButton.addActionListener(this::buttonPressed);
         normalProbabilityButton.addActionListener(this::buttonPressed);
+        poissonProbabilityButton.addActionListener(this::buttonPressed);
     }
 
     @Override
@@ -34,6 +35,8 @@ public class ProbabilityMenu implements View, ViewManager {
             parent.setPanel("binomialProbabilityCalculator");
         } else if (event.getSource() == normalProbabilityButton) {
             parent.setPanel("normalProbabilityCalculator");
+        } else if (event.getSource() == poissonProbabilityButton) {
+            parent.setPanel("poissonProbabilityCalculator");
         }
     }
 

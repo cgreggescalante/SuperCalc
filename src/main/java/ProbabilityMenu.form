@@ -53,20 +53,20 @@
           <text value="Normal Probability"/>
         </properties>
       </component>
-      <component id="3b90a" class="javax.swing.JButton" binding="button6" default-binding="true">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Button"/>
-        </properties>
-      </component>
       <component id="642ca" class="javax.swing.JButton" binding="button7" default-binding="true">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Button"/>
+        </properties>
+      </component>
+      <component id="3b90a" class="javax.swing.JButton" binding="poissonProbabilityButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Poisson Probability"/>
         </properties>
       </component>
     </children>

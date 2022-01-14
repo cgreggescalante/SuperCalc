@@ -12,6 +12,7 @@ public class SuperCalcApp extends JFrame {
         CombinationCalculator combinationCalculator = new CombinationCalculator(this);
         BinomialProbabilityCalculator binomialProbabilityCalculator = new BinomialProbabilityCalculator(this);
         NormalProbabilityCalculator normalProbabilityCalculator = new NormalProbabilityCalculator(this);
+        PoissonProbabilityCalculator poissonProbabilityCalculator = new PoissonProbabilityCalculator(this);
 
         root.add(calculator.getRoot(), "calculator");
 
@@ -20,6 +21,7 @@ public class SuperCalcApp extends JFrame {
         root.add(combinationCalculator.getRoot(), "combinationCalculator");
         root.add(binomialProbabilityCalculator.getRoot(), "binomialProbabilityCalculator");
         root.add(normalProbabilityCalculator.getRoot(), "normalProbabilityCalculator");
+        root.add(poissonProbabilityCalculator.getRoot(), "poissonProbabilityCalculator");
 
         SuperCalcMenu menu = new SuperCalcMenu(this);
         root.add(menu.getRoot(), "menu");
