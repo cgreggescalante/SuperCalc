@@ -36,10 +36,16 @@ public class Expression {
         expression = expression.replaceAll(" ", "");
         expression = removeExtraParentheses(expression);
 
-        if (expression.length() > 0 && CONSTANT_PATTERN.matcher(expression).matches()) {
+        if (expression.equals("e")) {
+            operation = Operation.CONSTANT;
+            constant_value = Math.E;
+        } else if (expression.equals("pi")) {
+            operation = Operation.CONSTANT;
+            constant_value = Math.PI;
+        } else if (expression.length() > 0 && CONSTANT_PATTERN.matcher(expression).matches()) {
             constant_value = Double.parseDouble(expression);
             operation = Operation.CONSTANT;
-        } else if ("asdfghjklqwertyuiopzxcvbnm".contains(expression) && expression.length() == 1) {
+        } else if ("asdfghjklqwrtyuiopzxcvbnm".contains(expression) && expression.length() == 1) {
             operation = Operation.VARIABLE;
             variable = expression;
         } else if (checkParentheses(expression)) {
