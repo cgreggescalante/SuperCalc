@@ -41,9 +41,23 @@ public class BinomialProbabilityCalculator implements View {
         int n = (int) (double) trialsSpinner.getValue();
         int x = (int) (double) successesSpinner.getValue();
 
-        double result = binomialCoefficient(n, x) * FastMath.pow(probability, x) * FastMath.pow(1 - probability, n - x);
+        double equal = binomialCoefficient(n, x) * FastMath.pow(probability, x) * FastMath.pow(1 - probability, n - x);
+        double lessThan = 0;
+        for (int i = 0; i < x; i++) {
+            lessThan += binomialCoefficient(n, i) * FastMath.pow(probability, i) * FastMath.pow(1 - probability, n - i);
+        }
+        double lessThanOrEqual = lessThan + equal;
+        double greaterThan = 0;
+        for (int i = x + 1; i <= n; i++) {
+            greaterThan += binomialCoefficient(n, i) * FastMath.pow(probability, i) * FastMath.pow(1 - probability, n - i);
+        }
+        double greaterThanOrEqual = greaterThan + equal;
 
-        equalLabel.setText("P(X = x) = " + result);
+        equalLabel.setText("P(X = x) = " + equal);
+        lessThanLabel.setText("P(X < x) = " + lessThan);
+        lessThanOrEqualLabel.setText("P(X <= x) = " + lessThanOrEqual);
+        greaterThanLabel.setText("P(X > x) = " + greaterThan);
+        greaterThanOrEqualLabel.setText("P(X >= x) = " + greaterThanOrEqual);
     }
 
     @Override
