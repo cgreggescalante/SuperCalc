@@ -6,7 +6,9 @@ public class Expression {
         ADD, SUBTRACT,
         MULTIPLY, DIVIDE, MODULO,
         EXPONENTIATION, VARIABLE, CONSTANT,
-        SINE, COSINE, TANGENT, COTANGENT, SECANT, COSECANT
+        SINE, COSINE, TANGENT, COTANGENT, SECANT, COSECANT,
+        NATURAL_LOGARITHM, LOGARITHM,
+        SQUARE_ROOT
     }
 
     private final List<Operation> TRIG_FUNCTIONS = new ArrayList<>() {{
@@ -44,23 +46,24 @@ public class Expression {
             String parenContents = expression.substring(expression.indexOf("(") + 1, expression.length() - 1);
             if (expression.startsWith("sin(") || expression.startsWith("sine(")) {
                 operation = Operation.SINE;
-                left_term = new Expression(parenContents);
             } else if (expression.startsWith("cos(") || expression.startsWith("cosine(")) {
                 operation = Operation.COSINE;
-                left_term = new Expression(parenContents);
             } else if (expression.startsWith("tan(") || expression.startsWith("tangent(")) {
                 operation = Operation.TANGENT;
-                left_term = new Expression(parenContents);
             } else if (expression.startsWith("cot(") || expression.startsWith("cotangent(")) {
                 operation = Operation.COTANGENT;
-                left_term = new Expression(parenContents);
             } else if (expression.startsWith("sec(") || expression.startsWith("secant(")) {
                 operation = Operation.SECANT;
-                left_term = new Expression(parenContents);
             } else if (expression.startsWith("csc(") || expression.startsWith("cosecant(")) {
                 operation = Operation.COSECANT;
-                left_term = new Expression(parenContents);
+            } else if (expression.startsWith("ln(")) {
+                operation = Operation.NATURAL_LOGARITHM;
+            } else if (expression.startsWith("log(")) {
+                operation = Operation.LOGARITHM;
+            } else if (expression.startsWith("sqrt(")) {
+                operation = Operation.SQUARE_ROOT;
             }
+            left_term = new Expression(parenContents);
         }
 
         boolean plus = false, minus = false, mult = false, div = false, exp = false, mod = false;
@@ -179,6 +182,9 @@ public class Expression {
             case COTANGENT -> 1 / Math.tan(left_term.evaluate(variables));
             case SECANT -> 1 / Math.cos(left_term.evaluate(variables));
             case COSECANT -> 1 / Math.sin(left_term.evaluate(variables));
+            case NATURAL_LOGARITHM -> Math.log(left_term.evaluate(variables));
+            case LOGARITHM -> Math.log10(left_term.evaluate(variables));
+            case SQUARE_ROOT -> Math.sqrt(left_term.evaluate(variables));
         };
     }
 
@@ -268,6 +274,9 @@ public class Expression {
             case COTANGENT -> "cot(" + left_term.toString() + ")";
             case COSECANT -> "csc(" + left_term.toString() + ")";
             case SECANT -> "sec(" + left_term.toString() + ")";
+            case NATURAL_LOGARITHM -> "ln(" + left_term.toString() + ")";
+            case LOGARITHM -> "log(" + left_term.toString() + ")";
+            case SQUARE_ROOT -> "sqrt(" + left_term.toString() + ")";
         };
     }
 
