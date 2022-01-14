@@ -38,7 +38,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Number of objects"/>
+        </properties>
       </component>
       <component id="b3a5" class="javax.swing.JLabel">
         <constraints>
@@ -54,7 +56,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Sample size"/>
+        </properties>
       </component>
       <component id="b584e" class="javax.swing.JButton" binding="evaluateButton" default-binding="true">
         <constraints>

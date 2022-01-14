@@ -30,19 +30,25 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Probability of success"/>
+        </properties>
       </component>
       <component id="b85b1" class="javax.swing.JSpinner" binding="trialsSpinner">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Number of trials"/>
+        </properties>
       </component>
       <component id="e932f" class="javax.swing.JSpinner" binding="successesSpinner">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Number of successes"/>
+        </properties>
       </component>
       <component id="eb8e8" class="javax.swing.JButton" binding="evaluateButton" default-binding="true">
         <constraints>

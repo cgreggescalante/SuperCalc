@@ -10,7 +10,7 @@ public class DoubleInputVerifier extends InputVerifier {
             Double.parseDouble(text);
             return true;
         } catch (NumberFormatException e) {
-            showMessageDialog(null, "Field : must be a valid input");
+            showMessageDialog(null, String.format("Field :'%s' must be a valid double", input.getToolTipText()));
         }
         return false;
     }
