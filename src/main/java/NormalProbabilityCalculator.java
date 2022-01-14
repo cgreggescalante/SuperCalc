@@ -2,7 +2,6 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.font.NumericShaper;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
