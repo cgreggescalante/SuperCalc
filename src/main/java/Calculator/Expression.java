@@ -34,6 +34,7 @@ public class Expression {
     private String variable;
 
     public Expression(String expression) {
+        System.out.println(expression);
         expression = expression.toLowerCase();
         expression = expression.replaceAll(" ", "");
         expression = removeExtraParentheses(expression);
@@ -75,7 +76,7 @@ public class Expression {
         }
 
         boolean plus = false, minus = false, mult = false, div = false, exp = false, mod = false;
-        int plusIndex = 0, minusIndex = 0, multIndex = 0, divIndex = 0, modIndex = 0;
+        int plusIndex = 0, minusIndex = 0, multIndex = 0, divIndex = 0, modIndex = 0, expIndex = 0;
 
         int depth = 0;
 
@@ -104,63 +105,66 @@ public class Expression {
                     } case '%' -> {
                         mod = true;
                         modIndex = i;
-                    } case '^' -> exp = true;
+                    } case '^' -> {
+                        exp = true;
+                        expIndex = i;
+                    }
                 }
             }
         }
 
         if (plus && minus) {
             if (plusIndex < minusIndex) {
-                splitExpression(expression, "+");
+                splitExpression(expression, "+", plusIndex);
             } else {
-                splitExpression(expression, "-");
+                splitExpression(expression, "-", minusIndex);
             }
         } else if (plus) {
-            splitExpression(expression,"+");
+            splitExpression(expression,"+", plusIndex);
         } else if (minus) {
-            splitExpression(expression, "-");
+            splitExpression(expression, "-", minusIndex);
         }
 
         else if (mult && div && mod) {
             if (multIndex < divIndex && multIndex < modIndex) {
-                splitExpression(expression, "*");
+                splitExpression(expression, "*", multIndex);
             } else if (divIndex < multIndex && divIndex < modIndex) {
-                splitExpression(expression, "/");
+                splitExpression(expression, "/", divIndex);
             } else {
-                splitExpression(expression, "%");
+                splitExpression(expression, "%", modIndex);
             }
         } else if (mult && div) {
             if (multIndex < divIndex) {
-                splitExpression(expression, "*");
+                splitExpression(expression, "*", multIndex);
             } else {
-                splitExpression(expression, "/");
+                splitExpression(expression, "/", divIndex);
             }
         } else if (mult && mod) {
             if (multIndex < modIndex) {
-                splitExpression(expression, "*");
+                splitExpression(expression, "*", multIndex);
             } else {
-                splitExpression(expression, "%");
+                splitExpression(expression, "%", modIndex);
             }
         } else if (div && mod) {
             if (divIndex < modIndex) {
-                splitExpression(expression, "/");
+                splitExpression(expression, "/", divIndex);
             } else {
-                splitExpression(expression, "%");
+                splitExpression(expression, "%", modIndex);
             }
         } else if (mult) {
-            splitExpression(expression,"*");
+            splitExpression(expression,"*", multIndex);
         } else if (div) {
-            splitExpression(expression, "/");
+            splitExpression(expression, "/", divIndex);
         } else if (mod) {
-            splitExpression(expression, "%");
+            splitExpression(expression, "%", modIndex);
         }
 
         else if (exp) {
-            splitExpression(expression, "^");
+            splitExpression(expression, "^", expIndex);
         }
     }
 
-    private void splitExpression(String expression, String operator) {
+    private void splitExpression(String expression, String operator, int operatorPosition) {
         switch (operator) {
             case "+" -> operation = Operation.ADD;
             case "-" -> operation = Operation.SUBTRACT;
@@ -170,8 +174,8 @@ public class Expression {
             case "%" -> operation = Operation.MODULO;
         }
 
-        left_term = new Expression(expression.substring(0, expression.indexOf(operator)));
-        right_term = new Expression(expression.substring(expression.indexOf(operator)+1));
+        left_term = new Expression(expression.substring(0, operatorPosition));
+        right_term = new Expression(expression.substring(operatorPosition+1));
     }
 
     public double evaluate(Map<String, Double> variables) {
@@ -249,7 +253,7 @@ public class Expression {
                 return false;
             }
         }
-        return true;
+        return entered;
     }
 
     public Set<String> getVariables() {
@@ -297,10 +301,9 @@ public class Expression {
     }
 
     public static void main(String[] args) {
-        Expression expression = new Expression("1 + cot(1 + c + a + b + x + a + x)");
+        Expression expression = new Expression("x^(10-x)-10*sin(x)");
         Map<String, Double> variables = new HashMap<>();
         variables.put("x", 10d);
-        System.out.println(expression);
-        System.out.println(expression.getVariables());
+        System.out.println(expression.evaluate(variables));
     }
 }
