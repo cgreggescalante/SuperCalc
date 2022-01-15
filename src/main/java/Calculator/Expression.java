@@ -34,7 +34,6 @@ public class Expression {
     private String variable;
 
     public Expression(String expression) {
-        System.out.println(expression);
         expression = expression.toLowerCase();
         expression = expression.replaceAll(" ", "");
         expression = removeExtraParentheses(expression);
