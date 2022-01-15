@@ -2,17 +2,14 @@ package Calculator;
 
 import javax.swing.table.DefaultTableModel;
 
-public class VariableTableModel extends DefaultTableModel {
-    public VariableTableModel(int rowCount, int columnCount) {
+public class ExpressionTableModel extends DefaultTableModel {
+    public ExpressionTableModel(int rowCount, int columnCount) {
         super(rowCount, columnCount);
     }
 
     @Override
     public Class<?> getColumnClass(int col) {
-        if (col == 0) {
-            return String.class;
-        }
-        return Double.class;
+        return String.class;
     }
 
     @Override

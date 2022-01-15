@@ -5,7 +5,9 @@ import Interfaces.View;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 
@@ -14,11 +16,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class GraphingCalculator implements View {
     private static final int FUNCTION_RESOLUTION = 100;
 
-    private JTextField equationTextField;
     private JButton displayButton;
     private JPanel graphPanel;
     private JPanel root;
@@ -28,15 +30,29 @@ public class GraphingCalculator implements View {
     private JTextField yMaxTextField;
     private JTextField yMinTextField;
 
+    private JPanel equationPanel;
+    private JButton addEquationButton;
+    private JPanel boundsPanel;
+    private JTable expressionTable;
+
     private JFreeChart chart;
 
     private final SuperCalcApp parent;
+    private final ExpressionTableModel expressionTableModel;
 
     public GraphingCalculator(SuperCalcApp parent) {
         this.parent = parent;
 
         displayButton.addActionListener(this::updateGraph);
         menuButton.addActionListener(this::returnToMenu);
+        addEquationButton.addActionListener(this::addEquation);
+
+        expressionTableModel = new ExpressionTableModel(0, 0);
+        expressionTable.setModel(expressionTableModel);
+
+        expressionTableModel.setColumnIdentifiers(new String[] {"a", "b"});
+
+        addEquation(null);
 
         XYDataset ds = createDataset();
         chart = ChartFactory.createXYLineChart("",
@@ -51,12 +67,27 @@ public class GraphingCalculator implements View {
         graphPanel.updateUI();
     }
 
+    private void addEquation(ActionEvent event) {
+        Vector<Object> row = new Vector<>();
+        row.add("f(x) = ");
+        row.add("x");
+
+        expressionTableModel.addRow(row);
+    }
+
     private void updateGraph(ActionEvent event) {
         XYDataset ds = createDataset();
 
         chart = ChartFactory.createXYLineChart("",
                 "x", "y", ds, PlotOrientation.VERTICAL, true, true,
                 false);
+
+        double y_min = Double.parseDouble(yMinTextField.getText());
+        double y_max = Double.parseDouble(yMaxTextField.getText());
+
+        XYPlot plot = (XYPlot) chart.getPlot();
+        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        range.setRange(y_min, y_max);
 
         ChartPanel panel = new ChartPanel(chart);
 
@@ -67,26 +98,31 @@ public class GraphingCalculator implements View {
     }
 
     private XYDataset createDataset() {
-        Expression expression = new Expression(equationTextField.getText());
-
-        int x_min = Integer.parseInt(xMinTextField.getText());
-        int x_max = Integer.parseInt(xMaxTextField.getText());
-
-        int points = (x_max - x_min) * FUNCTION_RESOLUTION + 1;
         DefaultXYDataset ds = new DefaultXYDataset();
 
-        double[][] data = new double[2][points];
+        int count = 1;
+        for (int i = 0; i < expressionTableModel.getRowCount(); i++) {
+            Expression expression = new Expression((String) expressionTableModel.getValueAt(i, 1));
 
-        Map<String, Double> variables = new HashMap<>();
-        variables.put("x", 0d);
+            int x_min = Integer.parseInt(xMinTextField.getText());
+            int x_max = Integer.parseInt(xMaxTextField.getText());
 
-        for (int x = 0; x < points; x++) {
-            data[0][x] = ((double) x) / FUNCTION_RESOLUTION + x_min;
-            variables.put("x", ((double) x) / FUNCTION_RESOLUTION + x_min);
-            data[1][x] = expression.evaluate(variables);
+            int points = (x_max - x_min) * FUNCTION_RESOLUTION + 1;
+
+
+            double[][] data = new double[2][points];
+
+            Map<String, Double> variables = new HashMap<>();
+
+            for (int x = 0; x < points; x++) {
+                data[0][x] = ((double) x) / FUNCTION_RESOLUTION + x_min;
+                variables.put("x", ((double) x) / FUNCTION_RESOLUTION + x_min);
+                data[1][x] = expression.evaluate(variables);
+            }
+
+            ds.addSeries(count + " : " + expression, data);
+            count++;
         }
-
-        ds.addSeries("series1", data);
 
         return ds;
     }
