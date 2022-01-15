@@ -12,6 +12,7 @@ public class SuperCalcMenu implements View {
     private JButton calculatorButton;
     private JButton probabilityButton;
     private JButton unitConversionButton;
+    private JButton graphingCalculatorButton;
 
     SuperCalcApp parent;
 
@@ -19,6 +20,7 @@ public class SuperCalcMenu implements View {
         this.parent = parent;
 
         calculatorButton.addActionListener(this::buttonPressed);
+        graphingCalculatorButton.addActionListener(this::buttonPressed);
         probabilityButton.addActionListener(this::buttonPressed);
         unitConversionButton.addActionListener(this::buttonPressed);
     }
@@ -30,6 +32,8 @@ public class SuperCalcMenu implements View {
             parent.setPanel("probability");
         } else if (event.getSource() == unitConversionButton) {
             parent.setPanel("unitConversion");
+        } else if (event.getSource() == graphingCalculatorButton) {
+            parent.setPanel("graphingCalculator");
         }
     }
 

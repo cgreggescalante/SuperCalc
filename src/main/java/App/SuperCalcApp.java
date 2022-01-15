@@ -1,6 +1,7 @@
 package App;
 
 import Calculator.Calculator;
+import Calculator.GraphingCalculator;
 import Interfaces.View;
 import Probability.*;
 import UnitConversion.UnitConversionMenu;
@@ -17,6 +18,7 @@ public class SuperCalcApp extends JFrame {
     private static final Map<String, Class<?>> views = new HashMap<>() {{
         put("menu", SuperCalcMenu.class);
         put("calculator", Calculator.class);
+        put("graphingCalculator", GraphingCalculator.class);
         put("probability", ProbabilityMenu.class);
         put("permutationCalculator", PermutationCalculator.class);
         put("combinationCalculator", CombinationCalculator.class);

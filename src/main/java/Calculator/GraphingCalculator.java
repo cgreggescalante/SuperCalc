@@ -1,5 +1,7 @@
 package Calculator;
 
+import App.SuperCalcApp;
+import Interfaces.View;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -13,19 +15,26 @@ import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GraphingCalculator extends JFrame {
+public class GraphingCalculator implements View {
 
     private JTextField equationTextField;
     private JButton displayButton;
     private JPanel graphPanel;
     private JPanel root;
+    private JButton menuButton;
 
     private JFreeChart chart;
 
-    public GraphingCalculator() {
+    private final SuperCalcApp parent;
+
+    public GraphingCalculator(SuperCalcApp parent) {
+        this.parent = parent;
+
         displayButton.addActionListener(this::updateGraph);
+        menuButton.addActionListener(this::returnToMenu);
+
         XYDataset ds = createDataset();
-        chart = ChartFactory.createXYLineChart("Test Chart",
+        chart = ChartFactory.createXYLineChart("",
                 "x", "y", ds, PlotOrientation.VERTICAL, true, true,
                 false);
 
@@ -35,17 +44,12 @@ public class GraphingCalculator extends JFrame {
         graphPanel.setLayout(new BorderLayout());
         graphPanel.add(panel, BorderLayout.NORTH);
         graphPanel.updateUI();
-        add(root);
-
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
     }
 
     private void updateGraph(ActionEvent event) {
         XYDataset ds = createDataset();
 
-        chart = ChartFactory.createXYLineChart("Test Chart",
+        chart = ChartFactory.createXYLineChart("",
                 "x", "y", ds, PlotOrientation.VERTICAL, true, true,
                 false);
 
@@ -78,7 +82,13 @@ public class GraphingCalculator extends JFrame {
         return ds;
     }
 
-    public static void main(String[] args) {
-        new GraphingCalculator();
+    @Override
+    public JPanel getRoot() {
+        return root;
+    }
+
+    @Override
+    public void returnToMenu(ActionEvent event) {
+        parent.setPanel("menu");
     }
 }
