@@ -4,7 +4,7 @@ import Calculator.Calculator;
 import Interfaces.View;
 import Probability.*;
 import UnitConversion.UnitConversionMenu;
-import UnitConversion.UnitConverter;
+import UnitConversion.UnitConversion;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,13 +24,13 @@ public class SuperCalcApp extends JFrame {
         put("normalProbabilityCalculator", NormalProbabilityCalculator.class);
         put("poissonProbabilityCalculator", PoissonProbabilityCalculator.class);
         put("unitConversion", UnitConversionMenu.class);
-        put("volumeConversion", UnitConverter.class);
-        put("lengthConversion", UnitConverter.class);
-        put("weightMassConversion", UnitConverter.class);
-        put("temperatureConversion", UnitConverter.class);
-        put("energyConversion", UnitConverter.class);
-        put("areaConversion", UnitConverter.class);
-        put("speedConversion", UnitConverter.class);
+        put("volumeConversion", UnitConversion.class);
+        put("lengthConversion", UnitConversion.class);
+        put("weightMassConversion", UnitConversion.class);
+        put("temperatureConversion", UnitConversion.class);
+        put("energyConversion", UnitConversion.class);
+        put("areaConversion", UnitConversion.class);
+        put("speedConversion", UnitConversion.class);
     }};
 
     private JPanel root;
